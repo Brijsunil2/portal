@@ -15,7 +15,7 @@ const Header = () => {
 
       <div className="dropdown">
         <a href="#" className="d-block link-body-emphasis text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle" />
+          <img src="https://png.pngtree.com/png-vector/20190420/ourmid/pngtree-question-mark-vector-icon-png-image_963976.jpg" alt="question mark" width="40" height="40" className="rounded-circle" />
         </a>
         <ul className="dropdown-menu text-small" >
           <li><a className="dropdown-item" href="./">Settings</a></li>
