@@ -1,4 +1,7 @@
-const Header = () => {
+import HeaderToolbar from "./HeaderToolbar";
+
+const Header = (props) => {
+  
   return (
     <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2 mb-4 border-bottom">
       <div className="mb-2 mb-md-0">
@@ -7,11 +10,10 @@ const Header = () => {
         </a>
       </div>
 
-      <ul className="nav nav-underline col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="./" className="nav-link px-2 active"><h3>Home</h3></a></li>
-        <li><a href="./" className="nav-link px-2"><h3>Forums</h3></a></li>
-        <li><a href="./" className="nav-link px-2"><h3>Calendar</h3></a></li>
-      </ul>
+      <HeaderToolbar 
+        toolbarLinkNames={props.toolbarLinkNames} 
+        activeLinkIndex={props.activeLinkIndex}
+      />
 
       <div className="dropdown">
         <a href="#" className="d-block link-body-emphasis text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
