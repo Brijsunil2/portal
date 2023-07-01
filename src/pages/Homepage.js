@@ -1,6 +1,7 @@
 import "./Homepage.css";
-import AppsList from "../components/AppsList/AppsList";
 import Section from "../components/Section/Section";
+import AppsList from "../components/AppsList/AppsList";
+import DateTimeSection from "../components/DateTimeSection/DateTimeSection";
 
 const Homepage = () => {
   const appNames = ["Forums", "Calendar"];
@@ -14,7 +15,7 @@ const Homepage = () => {
       />
       <Section 
         sectionName={"date-container"} 
-        // content={}
+        content={<DateTimeSection />}
       />
       <Section 
         sectionName={"weather-container"} 

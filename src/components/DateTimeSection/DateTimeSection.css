@@ -1,0 +1,19 @@
+.date-text .time-text {
+  font-family: 'Roboto Flex', sans-serif;
+}
+
+.date-text {
+  font-size: 26px;
+}
+
+.time-text {
+  font-size: 48px;
+}
+
+.datetime-container {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
