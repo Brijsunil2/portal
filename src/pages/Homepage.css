@@ -1,10 +1,42 @@
 .homepage-container {
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows:repeat(3, 1fr);
+  min-height: 500px;
+  gap: 16px;
 }
 
 .background-container {
-  width: 50px;
-  height: 50px;
-  margin: 10px;
+  width: 100%;
+  height: 100%;
   background-color: #BFD7FF;
+  border-radius: 10px;
 }
+
+.apps-container {
+  grid-row: 1 / 4;
+}
+
+.date-container {
+  grid-row: 1 / 2;
+}
+
+.weather-container {
+  grid-row: 2 / 4;
+}
+
+@media (min-width: 992px) {
+  .homepage-container {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .homepage-container {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+  }
+}
+
+
