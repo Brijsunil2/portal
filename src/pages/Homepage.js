@@ -1,11 +1,14 @@
 import "./Homepage.css";
+import AppsList from "../components/AppsList/AppsList";
 
 const Homepage = () => {
+  const appNames = ["Forums", "Calendar"];
+
   return (
     <div className="container homepage-container">
-        <div className="apps-container background-container"></div>
-        <div className="date-container background-container"></div>
-        <div className="weather-container background-container"></div>
+      <AppsList appNames={appNames} />
+      <div className="date-container background-container"></div>
+      <div className="weather-container background-container"></div>
     </div>
   )
 }
