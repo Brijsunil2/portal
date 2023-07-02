@@ -1,21 +1,23 @@
-function getUserLocationPromise() {
+import errorHandler, { ERRORTYPES } from "./errorHandler";
+
+const getUserLocationPromise = () => {
   if (navigator.geolocation) {
     return new Promise((res, _) => {
       navigator.geolocation.getCurrentPosition(res, handleError);
     }); 
 
   } else {
-    console.error("Geolocation is not supported by this browser.");
+    errorHandler(ERRORTYPES.WARN, "Geolocation is not supported by this browser.");
   }
-}
+};
 
-async function getUserLocation() {
+const getUserLocation = async () => {
   var pos = await getUserLocationPromise();
   
   return {latitude: pos.coords.latitude, longitude: pos.coords.longitude};
-}
+};
 
-function handleError(error) {
+const handleError = (error) => {
   let errorStr;
   switch (error.code) {
     case error.PERMISSION_DENIED:
@@ -30,7 +32,8 @@ function handleError(error) {
     default:
       errorStr = 'An unknown error occurred.';
   }
-  console.error('Error: ' + errorStr);
-}
+
+  errorHandler(ERRORTYPES.ERROR, errorStr, error.code);
+};
 
 export default getUserLocation;

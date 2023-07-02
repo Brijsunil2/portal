@@ -3,8 +3,16 @@ const ERRORTYPES = {
   WARN: "Warn"
 }
 
-const errorHandler = (errorType, errorCode, errorMessage) => {
-  console.warn(`[${errorType}${errorCode && ": " + errorCode}]: ${errorMessage}`);
+const errorHandler = (errorType, errorMessage, errorCode) => {
+  if (errorType === ERRORTYPES.ERROR){
+    console.error(`[${errorType}${errorCode ? ": " + errorCode : ""}]: ${errorMessage}`);
+
+  } else if (errorType === ERRORTYPES.WARN) {
+    console.warn(`[${errorType}${errorCode ? ": " + errorCode : ""}]: ${errorMessage}`);
+
+  } else {
+    console.log(`[${errorType}${errorCode ? ": " + errorCode : ""}]: ${errorMessage}`);
+  }
 }
 
 export default errorHandler;
