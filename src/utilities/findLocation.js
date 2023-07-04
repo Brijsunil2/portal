@@ -11,7 +11,7 @@ const getUserLocationPromise = () => {
   }
 };
 
-const getUserLocation = async () => {
+const findLocation = async () => {
   var pos = await getUserLocationPromise();
   
   return {latitude: pos.coords.latitude, longitude: pos.coords.longitude};
@@ -36,4 +36,4 @@ const handleError = (error) => {
   errorHandler(ERRORTYPES.ERROR, errorStr, error.code);
 };
 
-export default getUserLocation;
+export default findLocation;

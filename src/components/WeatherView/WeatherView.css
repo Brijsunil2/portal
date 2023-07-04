@@ -1,0 +1,26 @@
+.spinner-border {
+  height: 50px;
+  width: 50px;
+  color: #788BFF;
+}
+
+.weather-content-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10%
+}
+
+.weather-content-container p {
+  margin-bottom: 0;
+}
+
+.weather-header, .weather-temp {
+  font-size: 48px;
+}
+
+.weather-info {
+  color: #9C9C9C;
+  font-size: 16px;
+}

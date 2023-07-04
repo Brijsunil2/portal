@@ -19,7 +19,6 @@ const Homepage = () => {
         content={<DateTimeSection />}
       />
       <Section 
-        headerName="Weather" 
         sectionName={"weather-container"} 
         content={<WeatherView />}
       />
