@@ -1,0 +1,21 @@
+.auth-btn {
+  text-align: center;
+  background-color: #E2FDFF;
+  padding: 10px;
+  margin: 6px 16px;
+  border: solid 1px #5465FF;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.auth-btn:hover {
+  background-color: #ececec;
+}
+
+.auth-btn img {
+  margin: 0px 16px;
+}
+
+.auth-container {
+  margin-top: 16px;
+}

@@ -38,7 +38,7 @@ const WeatherView = () => {
                 <img 
                   className="weather-img"
                   src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} 
-                  alt="" 
+                  alt={weather.weather[0].description + " image"}
                 />
               </div>
               <div className="col">

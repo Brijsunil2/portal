@@ -5,6 +5,7 @@
   margin: 16px;
   border: solid 1px #5465FF;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .applistentry:hover {
