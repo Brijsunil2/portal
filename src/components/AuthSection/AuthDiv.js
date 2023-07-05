@@ -1,9 +1,9 @@
 const AuthDiv = ({text}) => {
   return (
-    <div class="d-flex px-4">
-      <hr class="my-auto flex-grow-1"/>
-      <div class="px-4">{text}</div>
-      <hr class="my-auto flex-grow-1"/>
+    <div className="d-flex px-4">
+      <hr className="my-auto flex-grow-1"/>
+      <div className="px-4">{text}</div>
+      <hr className="my-auto flex-grow-1"/>
     </div>
   )
 };

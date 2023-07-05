@@ -1,6 +1,6 @@
-const AuthBtn = ({imgSrc, text}) => {
+const AuthBtn = ({imgSrc, text, loginOnClick}) => {
   return (
-    <div className="auth-btn">
+    <div className="auth-btn" onClick={loginOnClick}>
       <img src={imgSrc} />
       <span>{text}</span>
     </div>

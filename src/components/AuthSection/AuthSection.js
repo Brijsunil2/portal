@@ -3,12 +3,12 @@ import "./AuthSection.css";
 import AuthBtn from "./AuthBtn";
 import AuthDiv from "./AuthDiv";
 
-const AuthSection = () => {
+const AuthSection = ({loginOnClick}) => {
   return (
     <div className="auth-container">
-      <AuthBtn imgSrc={googleIcon} text={"Sign in with Google"}/>
+      <AuthBtn imgSrc={googleIcon} text={"Sign in with Google"} loginOnClick={loginOnClick} />
       <AuthDiv text={"OR"} />
-      <AuthBtn imgSrc={googleIcon} text={"Sign up with Google"}/>
+      <AuthBtn imgSrc={googleIcon} text={"Sign up with Google"} loginOnClick={loginOnClick} />
     </div>
   )
 };

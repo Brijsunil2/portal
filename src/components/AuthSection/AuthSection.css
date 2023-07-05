@@ -16,6 +16,10 @@
   margin: 0px 16px;
 }
 
+.auth-btn span {
+  vertical-align: middle;
+}
+
 .auth-container {
   margin-top: 16px;
 }
