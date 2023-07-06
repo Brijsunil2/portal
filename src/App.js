@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Homepage from "./pages/Homepage/Homepage";
+import Forumspage from "./pages/Forumspage/Forumspage";
 
 const App = () => {
   const appTitle = "Header";
@@ -24,7 +26,15 @@ const App = () => {
         iconSrc={iconSrc}
         dropdownItems={dropdownItems}
       />
-      <Homepage loginOnClick={loginOnClick} token={token} />
+      <Routes>
+        <Route index element={
+          <Homepage loginOnClick={loginOnClick} token={token} />
+        }/>
+        <Route path={"/" + toolbarLinkNames[1] } element={
+          <Forumspage />
+        } />
+
+      </Routes>
       <Footer />
     </>
   )

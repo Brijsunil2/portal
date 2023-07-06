@@ -1,5 +1,6 @@
 import "./Homepage.css";
 import Section from "../../components/Section/Section";
+import SectionHeader from "../../components/Section/SectionHeader";
 import AppsList from "../../components/AppsList/AppsList";
 import DateTimeSection from "../../components/DateTimeSection/DateTimeSection";
 import WeatherView from "../../components/WeatherView/WeatherView";
@@ -13,27 +14,39 @@ const Homepage = ({loginOnClick, token}) => {
       {
         token ? (
           <Section 
-            headerName="Apps" 
             sectionName={"apps-container"} 
             content={<AppsList appNames={appNames} />}
-            headerColor={"#788BFF"}
+            backgroundColor={"white"}
+            header={
+              <SectionHeader 
+                headerName={ "Apps" } 
+                headerColor={"#788BFF"} 
+              />
+            }
           />
         ) : (
           <Section 
-            headerName="Sign in | Sign up" 
             sectionName={"apps-container"} 
             content={<AuthSection loginOnClick={loginOnClick} />}
-            headerColor={"#788BFF"}
+            backgroundColor={"white"}
+            header={
+              <SectionHeader 
+                headerName={ "Sign in | Sign up" } 
+                headerColor={"#788BFF"} 
+              />
+            }
           />
         )
       }
       <Section 
         sectionName={"date-container"} 
         content={<DateTimeSection />}
+        backgroundColor={"white"}
       />
       <Section 
         sectionName={"weather-container"} 
         content={<WeatherView />}
+        backgroundColor={"white"}
       />
     </div>
   )
