@@ -6,7 +6,7 @@ import Homepage from "./pages/Homepage/Homepage";
 import Forumspage from "./pages/Forumspage/Forumspage";
 
 const App = () => {
-  const appTitle = "Header";
+  const appTitle = "Portal";
   const toolbarLinkNames = ["Home", "Forums", "Calendar"];
   const dropdownItems = ["Settings", "Profile", "divider", "Sign out"];
   var iconSrc = "https://png.pngtree.com/png-vector/20190420/ourmid/pngtree-question-mark-vector-icon-png-image_963976.jpg";
@@ -27,13 +27,15 @@ const App = () => {
         dropdownItems={dropdownItems}
       />
       <Routes>
-        <Route index path={"/" + toolbarLinkNames[0] } element={
+        <Route index path={"/" + toolbarLinkNames[0]} element={
           <Homepage loginOnClick={loginOnClick} token={token} />
         }/>
         <Route path={"/" + toolbarLinkNames[1] } element={
           <Forumspage />
         } />
-
+        <Route path={ "*" } element={
+          <Homepage loginOnClick={loginOnClick} token={token} />
+        } />
       </Routes>
       <Footer />
     </>
