@@ -27,7 +27,7 @@ const App = () => {
         dropdownItems={dropdownItems}
       />
       <Routes>
-        <Route index element={
+        <Route index path={"/" + toolbarLinkNames[0] } element={
           <Homepage loginOnClick={loginOnClick} token={token} />
         }/>
         <Route path={"/" + toolbarLinkNames[1] } element={

@@ -21,18 +21,18 @@ const ForumsListItem = ({data}) => {
           <p className="forum-summary">{ data.summary.slice(0, 300) + " ..." }</p>
         </div>
       </div>
-      <div className="row text-end">
+      {/* <div className="row text-end">
         <div className="col-sm">
           <div className="container upvotes-container d-inline">
             <BiSolidUpArrowAlt style={{ color: "#2D841F" }} /> 
-            <p className="d-inline">{ data.upvotes }</p>
+            <p className="d-inline forum-light-text">{ data.upvotes }</p>
           </div>
           <div className="container downvotes-container d-inline">
             <BiSolidDownArrowAlt style={{ color: "#DE2D2D" }}/>
-            <p className="d-inline">{ data.downvotes }</p>
+            <p className="d-inline forum-light-text">{ data.downvotes }</p>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

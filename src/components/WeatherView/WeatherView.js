@@ -30,9 +30,9 @@ const WeatherView = () => {
                 </p>
               </div>
               <div className="col">
-                <p className="weather-temp">
+                {/* <p className="weather-temp">
                   {Math.round(kelvinToCelsius(weather.main.temp)) + "\u00B0C"}
-                </p>
+                </p> */}
               </div>
               <div className="col">
                 <img 
@@ -42,6 +42,9 @@ const WeatherView = () => {
                 />
               </div>
               <div className="col">
+                <p className="weather-temp">
+                    {Math.round(kelvinToCelsius(weather.main.temp)) + "\u00B0C"}
+                  </p>
                 <p className="weather-info">
                   {"Feels Like: " + Math.round(kelvinToCelsius(weather.main.feels_like)) + "\u00B0C"}
                 </p>

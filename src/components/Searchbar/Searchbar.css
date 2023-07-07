@@ -1,0 +1,30 @@
+.searchbar {
+  border: solid 1px;
+  border-radius: 5px;
+  height: 35px;
+  margin: 5px;
+}
+
+.searchbar:focus-within {
+  border-color: #5465FF;
+}
+
+.searchbar:hover {
+  box-shadow: #5465FF 0px 0px 15px;
+}
+
+.search-icon {
+  height: 100%;
+  margin: 0px 10px;
+}
+
+.searchbar > input {
+  /* height: 100%; */
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+}
+
+.searchbar > input:focus {
+  outline: none;
+}
