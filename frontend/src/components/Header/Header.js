@@ -12,11 +12,10 @@ const Header = (props) => {
       </div>
 
       <HeaderToolbar 
-        toolbarLinkNames={props.toolbarLinkNames} 
-        activeLinkIndex={props.activeLinkIndex}
+        paths={props.paths}
       />
 
-      <IconDropdown iconSrc={props.iconSrc} dropdownItems={props.dropdownItems}/>
+      <IconDropdown iconSrc={props.iconSrc} dropdownItems={props.dropdownItems} hideDropdown={props.hideDropdown}/>
     </header>
   )
 }

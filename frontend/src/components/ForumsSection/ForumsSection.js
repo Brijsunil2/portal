@@ -27,7 +27,7 @@ const ForumsSection = () => {
       <div className='container forumslist-container'>
         {
           dataset.map(data => {
-            return <ForumsListItem data={data} />
+            return <ForumsListItem key={data.id} data={data} />
           })
         }
       </div>

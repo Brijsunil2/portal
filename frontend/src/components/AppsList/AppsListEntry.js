@@ -7,7 +7,7 @@ const AppsListEntry = ({ appName }) => {
   };
 
   return (
-    <div className="applistentry" onClick={routeChange}>{ appName }</div>
+    <div className="applistentry" onClick={routeChange}>{ appName.toLowerCase() }</div>
   );
 };
 

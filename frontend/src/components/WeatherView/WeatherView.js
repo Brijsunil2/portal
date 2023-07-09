@@ -29,11 +29,7 @@ const WeatherView = () => {
                   {weather.weather[0].main}
                 </p>
               </div>
-              <div className="col">
-                {/* <p className="weather-temp">
-                  {Math.round(kelvinToCelsius(weather.main.temp)) + "\u00B0C"}
-                </p> */}
-              </div>
+              <div className="col"></div>
               <div className="col">
                 <img 
                   className="weather-img"

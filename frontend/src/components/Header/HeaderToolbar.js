@@ -1,15 +1,19 @@
+import { useState } from "react";
 import HeaderToolbarLink from "./HeaderToolbarLink";
 
-const HeaderToolbar = ({ toolbarLinkNames, activeLinkIndex }) => {
+const HeaderToolbar = ({ paths }) => {
+  const keys = Object.keys(paths);
 
   return (
     <ul className="nav nav-underline col-12 col-md-auto mb-2 justify-content-center mb-md-0">
       {
-        toolbarLinkNames.map((toolbarLinkName, i) => 
+        keys.map((key, i) => 
+          // console.log(`${key}: ${paths[key]}`)
           <HeaderToolbarLink 
             key={i}
-            toolbarLinkName={toolbarLinkName}
-            isActiveLink={activeLinkIndex === i}
+            id={i}
+            title={key}
+            path={paths[key]}
           />
         )
       }
