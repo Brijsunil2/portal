@@ -11,7 +11,7 @@ const Forumspage = () => {
         content={<ForumsSection />}
         backgroundColor={"white"}
         header={
-          <SectionHeader headerName="Forums" headerColor={"#788BFF"} />
+          <SectionHeader headerName="Forums" />
         }
       />
     </div>

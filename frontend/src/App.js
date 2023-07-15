@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -12,38 +12,19 @@ const App = () => {
     Forums: "/forums",
     Calendar: "/calendar"
   };
-
-  const dropdownItems = ["Settings", "Profile", "divider", "Sign out"];
-  const defaultIconSrc = "https://png.pngtree.com/png-vector/20190420/ourmid/pngtree-question-mark-vector-icon-png-image_963976.jpg";
   
-  const [token, setToken] = useState(false);
-  const [iconSrc, setIconSrc] = useState(defaultIconSrc);
-
-  const loginOnClick = () => {
-    setToken(true);
-  }
-
-
-  // const [message, setMessage] = useState("");
-
-  // useEffect(() => {
-  //   fetch("http://localhost:8000")
-  //     .then((res) => res.json())
-  //     .then((data) => console.log(data.message));
-  // }, []);
+  const [isAuth, setIsAuth] = useState(false);
 
   return (
     <>
       <Header 
         appTitle={appTitle}
         paths={paths}
-        iconSrc={iconSrc}
-        dropdownItems={dropdownItems}
-        hideDropdown={token}
+        isAuth={isAuth}
       />
       <Routes>
         <Route index path={paths.Name} element={
-          <Homepage loginOnClick={loginOnClick} token={token} />
+          <Homepage token={isAuth} />
         }/>
         <Route path={paths.Forums} element={
           <Forumspage />
@@ -54,7 +35,7 @@ const App = () => {
       </Routes>
       <Footer />
     </>
-  )
-}
+  );
+};
 
 export default App;

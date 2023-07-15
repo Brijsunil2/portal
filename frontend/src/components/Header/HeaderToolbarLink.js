@@ -5,7 +5,7 @@ const HeaderToolbarLink = (props) => {
   return (
     <li>
       <Link to={props.path} className={"nav-link px-2 "}>
-        <h3>{props.title}</h3>
+        <h3 className="my-0">{props.title}</h3>
       </Link>
     </li>
   )

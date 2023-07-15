@@ -1,7 +1,7 @@
 const ERRORTYPES = {
   ERROR: "Error",
   WARN: "Warn"
-}
+};
 
 const errorHandler = (errorType, errorMessage, errorCode) => {
   if (errorType === ERRORTYPES.ERROR){

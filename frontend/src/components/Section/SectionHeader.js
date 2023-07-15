@@ -1,6 +1,6 @@
-const SectionHeader = ({ headerName, headerColor }) => {
+const SectionHeader = ({ headerName }) => {
   return (
-    <div className="section-header" style={{backgroundColor: headerColor}}>
+    <div className="section-header">
       <h2>{ headerName }</h2>
     </div>
   )
