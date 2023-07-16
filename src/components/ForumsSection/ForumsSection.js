@@ -1,7 +1,6 @@
 import "./ForumsSection.css";
 
 import { useState } from "react";
-import forumsData from "../../temp/forumsData";
 import ForumsListItem from "./ForumsListItem";
 import Searchbar from "../Searchbar/Searchbar";
 import Button from "../Button/Button";
@@ -9,7 +8,7 @@ import DropdownMenu from "../DropdownMenu/DropdownMenu";
 
 const ForumsSection = () => {
   const dropdownItems = ["Latest", "Oldest" , "Name"];
-  const [dataset, setDataset] = useState(forumsData);
+  const [dataset, setDataset] = useState([]);
 
   return (
     <>

@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { useState } from "react";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Homepage from "./pages/Homepage/Homepage";
 import Forumspage from "./pages/Forumspage/Forumspage";
+import Calendarpage from "./pages/Calandarpage/Calendarpage";
 
 const App = () => {
   const appTitle = "Portal";
@@ -14,6 +15,11 @@ const App = () => {
   };
   
   const [isAuth, setIsAuth] = useState(false);
+  const [username, setUsername] = useState("Anonymous");
+
+  const login = () => {
+    
+  }
 
   return (
     <>
@@ -28,6 +34,9 @@ const App = () => {
         }/>
         <Route path={paths.Forums} element={
           <Forumspage />
+        } />
+        <Route path={paths.Calendar} element={
+          <Calendarpage />
         } />
         <Route path={ "*" } element={
           <Navigate to={paths.Name} />

@@ -1,6 +1,8 @@
-const AuthBtn = ({imgSrc, text, onClickFunc}) => {
+
+const AuthBtn = ({imgSrc, text}) => {
+
   return (
-    <form action="http://localhost:4000/auth/google">
+    <form action="http://localhost:3000">
       <button type="submit" className="auth-btn" >
         <img src={imgSrc} />
         <span>{text}</span>
