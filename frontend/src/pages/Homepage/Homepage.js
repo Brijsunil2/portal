@@ -6,7 +6,7 @@ import DateTimeSection from "../../components/DateTimeSection/DateTimeSection";
 import WeatherView from "../../components/WeatherView/WeatherView";
 import AuthSection from "../../components/AuthSection/AuthSection";
 
-const Homepage = ({onSigninClick, token}) => {
+const Homepage = ({token, login}) => {
   const appNames = ["Forums", "Calendar"];
 
   return (
@@ -27,7 +27,7 @@ const Homepage = ({onSigninClick, token}) => {
         ) : (
           <Section 
             sectionName={"apps-container"} 
-            content={<AuthSection onSigninClick={onSigninClick} />}
+            content={<AuthSection login={login} />}
             backgroundColor={"white"}
             header={
               <SectionHeader 

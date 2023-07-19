@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Homepage from "./pages/Homepage/Homepage";
@@ -15,10 +15,9 @@ const App = () => {
   };
   
   const [isAuth, setIsAuth] = useState(false);
-  const [username, setUsername] = useState("Anonymous");
 
   const login = () => {
-    
+    setIsAuth(true);
   }
 
   return (
@@ -30,7 +29,7 @@ const App = () => {
       />
       <Routes>
         <Route index path={paths.Name} element={
-          <Homepage token={isAuth} />
+          <Homepage token={isAuth} login={login} />
         }/>
         <Route path={paths.Forums} element={
           <Forumspage />

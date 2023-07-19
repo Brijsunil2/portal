@@ -3,10 +3,7 @@ import Section from "../../components/Section/Section";
 import SectionHeader from "../../components/Section/SectionHeader";
 import ForumsSection from "../../components/ForumsSection/ForumsSection";
 
-import { useState } from "react";
-
 const Forumspage = () => {
-  const [forums, setForums] = useState({});
 
   return (
     <div className="forumspage-container container">

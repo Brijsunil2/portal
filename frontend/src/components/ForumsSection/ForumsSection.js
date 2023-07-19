@@ -1,5 +1,5 @@
 import "./ForumsSection.css";
-
+import formData from "../../db";
 import { useState } from "react";
 import ForumsListItem from "./ForumsListItem";
 import Searchbar from "../Searchbar/Searchbar";
@@ -7,8 +7,8 @@ import Button from "../Button/Button";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 
 const ForumsSection = () => {
+  const [forums, setForums] = useState(formData.forums);
   const dropdownItems = ["Latest", "Oldest" , "Name"];
-  const [dataset, setDataset] = useState([]);
 
   return (
     <>
@@ -24,11 +24,11 @@ const ForumsSection = () => {
         </div>
       </div>
       <div className='container forumslist-container'>
-        {
-          dataset.map(data => {
-            return <ForumsListItem key={data.id} data={data} />
+        {/* {
+          forums.map(forum => {
+            return <ForumsListItem key={forum.id} data={forum} />
           })
-        }
+        } */}
       </div>
     </>
   );

@@ -6,7 +6,6 @@
   border: solid 1px #5465FF;
   border-radius: 5px;
   cursor: pointer;
-  width: 100%;
 }
 
 .auth-btn:hover {
@@ -25,8 +24,4 @@
   margin: 16px 0px;
   display: flex;
   flex-direction: column;
-}
-
-.auth-container form {
-  display: flex;
 }
