@@ -1,9 +1,9 @@
 
-const AuthBtn = ({imgSrc, text, login}) => {
+const AuthBtn = ({imgSrc, text}) => {
 
   return (
-    <button type="submit" className="auth-btn" onClick={() => login()} >
-      <img src={imgSrc} alt={text}/>
+    <button type="submit" className="auth-btn" >
+      {imgSrc && <img src={imgSrc} alt={text}/>}
       <span>{text}</span>
     </button>
   )

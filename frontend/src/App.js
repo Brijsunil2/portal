@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useLocalStorage } from "./utilities/localStoargeUtil";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -7,38 +7,32 @@ import Forumspage from "./pages/Forumspage/Forumspage";
 import Calendarpage from "./pages/Calandarpage/Calendarpage";
 
 const App = () => {
+  const [user, setUser] = useLocalStorage("user", null);;
   const appTitle = "Portal";
   const paths = {
     Home: "/",
     Forums: "/forums",
     Calendar: "/calendar"
   };
-  
-  const [isAuth, setIsAuth] = useState(false);
-
-  const login = () => {
-    setIsAuth(true);
-  }
 
   return (
     <>
       <Header 
         appTitle={appTitle}
         paths={paths}
-        isAuth={isAuth}
       />
       <Routes>
         <Route index path={paths.Name} element={
-          <Homepage token={isAuth} login={login} />
+          <Homepage user={user} setUser={setUser}/>
         }/>
         <Route path={paths.Forums} element={
-          <Forumspage />
+          <Forumspage user={user} />
         } />
         <Route path={paths.Calendar} element={
           <Calendarpage />
         } />
         <Route path={ "*" } element={
-          <Navigate to={paths.Name} />
+          <Navigate to={paths.Home} />
         } />
       </Routes>
       <Footer />

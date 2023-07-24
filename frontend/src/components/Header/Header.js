@@ -17,7 +17,7 @@ const Header = (props) => {
         paths={props.paths}
       />
 
-      <IconDropdown showDropdown={props.isAuth}/>
+      <IconDropdown/>
     </header>
   )
 }

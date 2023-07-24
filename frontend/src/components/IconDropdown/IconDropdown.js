@@ -1,7 +1,9 @@
 import IconDropdownItem from "./IconDropdownItem";
 import { useState } from "react";
 
-const IconDropdown = ({iconSrc, showDropdown}) => {
+const IconDropdown = ({iconSrc}) => {
+  const showDropdown = false;
+
   const dropdownItems = ["Settings", "Profile", "divider", "Sign out"];
   const [icon, setIcon] = useState(iconSrc ? iconSrc : require('../../assets/question.png'));
 
