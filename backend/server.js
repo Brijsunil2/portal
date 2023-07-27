@@ -1,6 +1,19 @@
+const { getDate, getTime } = require("./utilities/date.js");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+
+const app = express();
+const PORT = 4000;
+
+const http = require("http").Server(app);
+const socketIO = require("socket.io")(http, {
+  cors: {
+    origin: "http://localhost:3000"
+  }
+});
+
+
 
 var userIdCounter = 1;
 var forumIdCounter = 1;
@@ -9,12 +22,16 @@ const fakeDB = {
   forums: []
 }
 
-const app = express();
-const port = 4000;
-
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+socketIO.on("connection", (socket) => {
+  console.log(`[Server]: ${socket.id} just connected.`);
+  socket.on("disconnect", () => {
+    console.log("[Server]: A user disconnected");
+  });
+});
 
 app.post("/users", (req, res) => {
   const newUser = {
@@ -31,11 +48,14 @@ app.get("/forums", (req, res) => {
 });
 
 app.post("/forums", (req, res) => {
-  const newForum = {...req.body, id: forumIdCounter, posts: []}
+  const dateTime = getDate() + " " + getTime();
+  const newForum = {...req.body, id: forumIdCounter, posts: [], dateCreated: dateTime};
   fakeDB.forums.push(newForum);
-  console.log(fakeDB);
   forumIdCounter++;
-  res.json(newForum);
 });
 
-app.listen(port, () => console.log(`[Server]: Running on port ${port}`));
+app.get("/forum/:id", (req, res) => {
+  
+});
+
+app.listen(PORT, () => console.log(`[Server]: Running on port ${PORT}`));
