@@ -52,6 +52,7 @@ app.post("/forums", (req, res) => {
   const newForum = {...req.body, id: forumIdCounter, posts: [], dateCreated: dateTime};
   fakeDB.forums.push(newForum);
   forumIdCounter++;
+  res.json({forumID: newForum.id});
 });
 
 app.get("/forum/:id", (req, res) => {

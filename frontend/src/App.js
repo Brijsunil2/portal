@@ -5,6 +5,7 @@ import Footer from "./components/Footer/Footer";
 import Homepage from "./pages/Homepage/Homepage";
 import Forumspage from "./pages/Forumspage/Forumspage";
 import Calendarpage from "./pages/Calandarpage/Calendarpage";
+import Forumpage from "./pages/Forumpage/Forumpage";
 
 const App = () => {
   const [user, setUser] = useLocalStorage("user", null);;
@@ -28,10 +29,13 @@ const App = () => {
         <Route path={paths.Forums} element={
           <Forumspage user={user} />
         } />
+        <Route path={"/forum/:id"} element={
+          <Forumpage />
+        } />
         <Route path={paths.Calendar} element={
           <Calendarpage />
         } />
-        <Route path={ "*" } element={
+        <Route path="*" element={
           <Navigate to={paths.Home} />
         } />
       </Routes>

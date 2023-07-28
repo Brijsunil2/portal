@@ -4,11 +4,20 @@ import ForumsListItem from "./ForumsListItem";
 import Searchbar from "../Searchbar/Searchbar";
 import Button from "../Button/Button";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
+import { useNavigate } from "react-router-dom";
 
 const ForumsSection = ({user}) => {
+  const navagate = useNavigate();
   const dropdownItems = ["Latest", "Oldest" , "Name"];
   const [forums, setForums] = useState([]);
   const [modalData, setModalData] = useState({ title: "", desc: "" });
+
+  useEffect(() => {
+    fetch("http://localhost:4000/forums", {
+      method: "GET"
+    }).then(res => res.json())
+      .then(data => setForums(data));
+  }, []);
 
   const clearModal = () => {
     setModalData({ title: "", desc: "" });
@@ -22,9 +31,8 @@ const ForumsSection = ({user}) => {
     };
   };
 
-  const modalSubmit = async () => {
-    console.log(user);
-    await fetch("http://localhost:4000/forums", {
+  const modalSubmit = () => {
+    fetch("http://localhost:4000/forums", {
       method: "POST",
       body: JSON.stringify({
         title: modalData.title,
@@ -36,7 +44,12 @@ const ForumsSection = ({user}) => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
-    }).catch((e) => console.log("Error creating a forum " + e));
+    }).then(res => res.json())
+      .then(forumID => {
+        clearModal();
+        navagate("/forum/" + forumID.forumID);
+      })
+      .catch((e) => console.log("Error creating a forum " + e));
   };
 
   return (

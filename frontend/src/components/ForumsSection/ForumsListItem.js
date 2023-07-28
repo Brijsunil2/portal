@@ -1,8 +1,15 @@
 // import { BiSolidUpArrowAlt, BiSolidDownArrowAlt } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 const ForumsListItem = ({data}) => {
+  const navagate = useNavigate();
+
+  const forumOnClick = () => {
+    navagate("/forum/" + data.id);
+  };
+
   return (
-    <div className="d-flex flex-column forumslistitem-container">
+    <div className="d-flex flex-column forumslistitem-container" onClick={forumOnClick}>
       <div className="row">
         <div className="col-sm">
           <h2 className="forum-title">{ data.title }</h2>
@@ -12,13 +19,13 @@ const ForumsListItem = ({data}) => {
             <p className="forum-light-text text-end">{ data.dateCreated }</p>
           </div>
           <div className="row">
-            <p className="forum-light-text text-end">{ data.author }</p>
+            <p className="forum-light-text text-end">{ "Creator: " + data.creator }</p>
           </div>
         </div>
       </div>
       <div className="row flex-fill py-4">
         <div className="col-sm">
-          <p className="forum-summary">{ data.summary.slice(0, 300) + " ..." }</p>
+          <p className="forum-summary">{ data.desc.slice(0, 300) + " ..." }</p>
         </div>
       </div>
       {/* <div className="row text-end">
