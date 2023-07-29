@@ -7,6 +7,9 @@ import Forumspage from "./pages/Forumspage/Forumspage";
 import Calendarpage from "./pages/Calandarpage/Calendarpage";
 import Forumpage from "./pages/Forumpage/Forumpage";
 
+import socketIO from "socket.io-client";
+const socket = socketIO.connect("http://localhost:4000");
+
 const App = () => {
   const [user, setUser] = useLocalStorage("user", null);;
   const appTitle = "Portal";
@@ -24,13 +27,13 @@ const App = () => {
       />
       <Routes>
         <Route index path={paths.Name} element={
-          <Homepage user={user} setUser={setUser}/>
+          <Homepage user={user} setUser={setUser} socket={socket} />
         }/>
         <Route path={paths.Forums} element={
           <Forumspage user={user} />
         } />
         <Route path={"/forum/:id"} element={
-          <Forumpage />
+          <Forumpage socket={socket} />
         } />
         <Route path={paths.Calendar} element={
           <Calendarpage />

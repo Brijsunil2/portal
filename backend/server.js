@@ -13,8 +13,6 @@ const socketIO = require("socket.io")(http, {
   }
 });
 
-
-
 var userIdCounter = 1;
 var forumIdCounter = 1;
 const fakeDB = {
@@ -28,6 +26,12 @@ app.use(bodyParser.json());
 
 socketIO.on("connection", (socket) => {
   console.log(`[Server]: ${socket.id} just connected.`);
+
+  socket.on('messageSend', (data) => {
+    console.log(data);
+    socketIO.emit('messageUpdate', data);
+  });
+
   socket.on("disconnect", () => {
     console.log("[Server]: A user disconnected");
   });
@@ -55,8 +59,4 @@ app.post("/forums", (req, res) => {
   res.json({forumID: newForum.id});
 });
 
-app.get("/forum/:id", (req, res) => {
-  
-});
-
-app.listen(PORT, () => console.log(`[Server]: Running on port ${PORT}`));
+http.listen(PORT, () => console.log(`[Server]: Running on port ${PORT}`));

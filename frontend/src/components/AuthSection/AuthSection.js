@@ -5,7 +5,7 @@ import AuthBtn from "./AuthBtn";
 import AuthDiv from "./AuthDiv";
 import Button from "../Button/Button";
 
-const AuthSection = ({ setUser }) => {
+const AuthSection = ({ setUser, socket }) => {
   const [username, setUsername] = useState("");
 
   const usernameChange = (e) => {
@@ -16,7 +16,7 @@ const AuthSection = ({ setUser }) => {
     e.preventDefault();
     fetch("http://localhost:4000/users", {
       method: "POST",
-      body: JSON.stringify({username: username}),
+      body: JSON.stringify({username: username, socketID: socket.id}),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'

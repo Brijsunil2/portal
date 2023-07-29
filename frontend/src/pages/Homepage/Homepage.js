@@ -6,11 +6,11 @@ import DateTimeSection from "../../components/DateTimeSection/DateTimeSection";
 import WeatherView from "../../components/WeatherView/WeatherView";
 import AuthSection from "../../components/AuthSection/AuthSection";
 
-const Homepage = ({ user, setUser }) => {  
+const Homepage = ({ user, setUser, socket }) => {  
   const appNames = ["Forums", "Calendar"];
 
   return (
-    <div className="container homepage-container">
+    <div className="container homepage-container body-container">
       {
         user ? (
           <Section 
@@ -27,7 +27,7 @@ const Homepage = ({ user, setUser }) => {
         ) : (
           <Section 
             sectionName={"apps-container"} 
-            content={<AuthSection setUser={setUser} />}
+            content={<AuthSection setUser={setUser} socket={socket} />}
             backgroundColor={"white"}
             header={
               <SectionHeader 

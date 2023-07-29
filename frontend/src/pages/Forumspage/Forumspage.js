@@ -6,7 +6,7 @@ import ForumsSection from "../../components/ForumsSection/ForumsSection";
 const Forumspage = ({user}) => {
 
   return (
-    <div className="forumspage-container container">
+    <div className="forumspage-container container body-container">
       <Section 
         sectionName={"forums-container"} 
         content={<ForumsSection user={user} />}
