@@ -1,27 +1,17 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import "./Forumpage.css";
+import Section from "../../components/Section/Section";
+import ForumSection from "../../components/ForumSection/ForumSection";
 
-
-const Forumpage = ({ socket }) => {
-  const { id } = useParams();
-
-  useEffect(() => {
-    socket.on('messageUpdate', data => console.log(data));
-  });
-
-  const handleMessageSend = (e) => {
-    e.preventDefault();
-    socket.emit('messageSend', {
-      text: "hello",
-      id: `${socket.id}${Math.random()}`,
-      socketID: socket.id,
-      forumId: id
-    });
-  };
+const Forumpage = ({ socket, user }) => {
 
   return (
-    <div onClick={handleMessageSend}>Forumpage {id}</div>
+    <div className="forumpage-container container body-container">
+      <Section 
+          sectionName={"forum-container"} 
+          content={<ForumSection socket={socket} user={user} />}
+      />
+    </div>
   )
 }
 
-export default Forumpage
+export default Forumpage;

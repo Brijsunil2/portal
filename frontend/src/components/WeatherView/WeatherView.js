@@ -1,21 +1,26 @@
 import "./WeatherView.css";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import findLocation from "../../utilities/findLocation";
 
 const kelvinToCelsius = kelvinTemp => (kelvinTemp - 273.15);
 
 const WeatherView = () => {
+  const init = useRef(false);
   const [weather, setWeather] = useState();
   
   useEffect(() => {
-    findLocation().then(async (location) => {
-      const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${process.env.REACT_APP_OPENWEATHER_KEY}`;
-  
-      const res = await fetch(weatherURL);
-      const jsonData = await res.json();
-      setWeather(jsonData);
-    });
+    if (!init.current) {
+      findLocation().then(async (location) => {
+        const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${process.env.REACT_APP_OPENWEATHER_KEY}`;
+    
+        const res = await fetch(weatherURL);
+        const jsonData = await res.json();
+        setWeather(jsonData);
+      });
+    }
+
+    return () => init.current = true;
   }, []);
 
   return (

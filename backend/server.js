@@ -27,9 +27,13 @@ app.use(bodyParser.json());
 socketIO.on("connection", (socket) => {
   console.log(`[Server]: ${socket.id} just connected.`);
 
-  socket.on('messageSend', (data) => {
-    console.log(data);
-    socketIO.emit('messageUpdate', data);
+  socket.on("forumReply", (reply) => {
+    fakeDB.forums.find(forum => {
+      if (forum.id == reply.forumID) {
+        forum.posts.push(reply);
+      }
+    });
+    socketIO.emit("forumReplyUpdate/" + reply.forumID, reply);
   });
 
   socket.on("disconnect", () => {
@@ -57,6 +61,10 @@ app.post("/forums", (req, res) => {
   fakeDB.forums.push(newForum);
   forumIdCounter++;
   res.json({forumID: newForum.id});
+});
+
+app.get("/forum/:id", (req, res) => {
+  res.json(fakeDB.forums.find(forum => req.params.id == forum.id));
 });
 
 http.listen(PORT, () => console.log(`[Server]: Running on port ${PORT}`));

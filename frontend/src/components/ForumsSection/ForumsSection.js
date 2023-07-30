@@ -1,5 +1,5 @@
 import "./ForumsSection.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ForumsListItem from "./ForumsListItem";
 import Searchbar from "../Searchbar/Searchbar";
 import Button from "../Button/Button";
@@ -8,15 +8,20 @@ import { useNavigate } from "react-router-dom";
 
 const ForumsSection = ({user}) => {
   const navagate = useNavigate();
+  const init = useRef(false);
   const dropdownItems = ["Latest", "Oldest" , "Name"];
   const [forums, setForums] = useState([]);
   const [modalData, setModalData] = useState({ title: "", desc: "" });
 
   useEffect(() => {
-    fetch("http://localhost:4000/forums", {
-      method: "GET"
-    }).then(res => res.json())
-      .then(data => setForums(data));
+    if (!init.current) {
+      fetch("http://localhost:4000/forums", {
+        method: "GET"
+      }).then(res => res.json())
+        .then(data => setForums(data));
+    }
+
+    return () => init.current = true;
   }, []);
 
   const clearModal = () => {

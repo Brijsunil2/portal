@@ -33,7 +33,7 @@ const App = () => {
           <Forumspage user={user} />
         } />
         <Route path={"/forum/:id"} element={
-          <Forumpage socket={socket} />
+          <Forumpage socket={socket} user={user} />
         } />
         <Route path={paths.Calendar} element={
           <Calendarpage />
