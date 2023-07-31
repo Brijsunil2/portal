@@ -30,6 +30,15 @@ const ForumSection = ({ socket, user }) => {
   });
   const [message, setMessage] = useState("");
 
+  const setData = (data) => {
+    const tempArr = forumData.posts;
+    tempArr.push(data);
+    setForumData({
+      ...forumData,
+      posts: tempArr
+    });
+  }
+
   useEffect(() => {
     if (!init.current) {
       init.current = true;
@@ -38,15 +47,12 @@ const ForumSection = ({ socket, user }) => {
       }).then(res => res.json())
         .then(data => setForumData(data));
     }
-  }, []);
 
-  useEffect(() => {
-    if (!temp.current) {
-      socket.on('forumReplyUpdate/'+ id, data => console.log(data));
-    }
+    socket.on("forumReplyUpdate/" + id, data => setData(data));
 
-    return () => temp.current = true;
-  }, [forumData]);
+    return () => socket.off("forumReplyUpdate/" + id);
+  }, [setData, forumData]);
+
 
   return (
     <div className="forumsection-container">
@@ -57,7 +63,7 @@ const ForumSection = ({ socket, user }) => {
         socket={socket} 
         user={user}
       />
-      {/* <ForumSectionBody forumPosts={ forumData.posts } /> */}
+      <ForumSectionBody forumPosts={ forumData.posts } />
     </div>
   )
 };

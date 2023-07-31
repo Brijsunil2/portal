@@ -9,6 +9,7 @@ const ForumSectionHeader = ({ forumData, modalData, setModalData, socket, user }
 
   const modalSubmit = (e) => {
     e.preventDefault();
+
     socket.emit('forumReply', {
       ...user,
       message: modalData,

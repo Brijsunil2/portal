@@ -4,9 +4,7 @@ const ForumSectionBody = ({ forumPosts }) => {
   return (
     <div className="forumsectionbody-container">
       {
-        forumPosts.map((post) => {
-          <ForumListItem post={post} />
-        })
+        forumPosts.map(post => <ForumListItem key={post.postID} post={post} />)
       }
     </div>
   );

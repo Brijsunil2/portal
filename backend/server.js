@@ -15,6 +15,7 @@ const socketIO = require("socket.io")(http, {
 
 var userIdCounter = 1;
 var forumIdCounter = 1;
+var postIdCounter = 1;
 const fakeDB = {
   users: [],
   forums: []
@@ -30,10 +31,14 @@ socketIO.on("connection", (socket) => {
   socket.on("forumReply", (reply) => {
     fakeDB.forums.find(forum => {
       if (forum.id == reply.forumID) {
+        delete reply.forumID;
+        reply.postID = postIdCounter;
+        reply.dateCreated = getDate() + " " + getTime();
         forum.posts.push(reply);
+        socketIO.emit("forumReplyUpdate/" + forum.id, reply);
+        postIdCounter++;
       }
     });
-    socketIO.emit("forumReplyUpdate/" + reply.forumID, reply);
   });
 
   socket.on("disconnect", () => {
