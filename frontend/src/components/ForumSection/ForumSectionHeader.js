@@ -21,7 +21,7 @@ const ForumSectionHeader = ({ forumData, modalData, setModalData, socket, user }
 
   return (
     <div className="d-flex flex-column forumsectionheader-container" >
-      <div className="row">
+      <div className="row forumitem-header">
         <div className="col-sm">
           <h2 className="forum-title">{ forumData.title }</h2>
         </div>

@@ -10,7 +10,7 @@ const ForumsListItem = ({data}) => {
 
   return (
     <div className="d-flex flex-column forumslistitem-container" onClick={forumOnClick}>
-      <div className="row">
+      <div className="row forumitem-header">
         <div className="col-sm">
           <h2 className="forum-title">{ data.title }</h2>
         </div>

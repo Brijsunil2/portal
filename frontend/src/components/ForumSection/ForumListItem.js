@@ -1,17 +1,13 @@
 const ForumListItem = ({ post }) => {
+
   return (
-    <div className="d-flex flex-column forum-message-container" >
-      <div className="row">
-        <div className="row">
-          <p className="forum-light-text text-end">{ post.dateCreated }</p>
-        </div>
-        <div className="row">
-          <p className="forum-light-text text-end">{ post.username }</p>
-        </div>
+    <div className="forum-message-body py-2">
+      <div className="row forumitem-header">
+        <p className="forum-light-text">{ post.username + " --- " + post.dateCreated }</p>
       </div>
-      <div className="row flex-fill py-4">
+      <div className="row flex-fill">
         <div className="col-sm">
-          <p className="forum-summary">{ post.message }</p>
+          <p className="forum-summary p-2">{ post.message }</p>
         </div>
       </div>
     </div>

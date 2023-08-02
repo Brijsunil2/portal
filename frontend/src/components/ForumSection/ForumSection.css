@@ -20,7 +20,16 @@
   color: #595959;
 }
 
-.forum-message-container {
-  background-color: #e9e9e9;
-  border-radius: 5px;
+.forumitem-header {
+  background-color: aliceblue;
+  padding: 5px;
+}
+
+.forum-message-body {
+  margin: 0 25px;
+}
+
+.forum-message-body p {
+  margin: 0;
+  font-size: 14px;
 }
