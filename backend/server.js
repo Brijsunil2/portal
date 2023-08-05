@@ -2,6 +2,7 @@ const { getDate, getTime } = require("./utilities/date.js");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const mongoose = require("mongoose");
 
 const app = express();
 const PORT = 4000;
@@ -14,8 +15,6 @@ const socketIO = require("socket.io")(http, {
 });
 
 var userIdCounter = 1;
-var forumIdCounter = 1;
-var postIdCounter = 1;
 const fakeDB = {
   users: [],
   forums: []
@@ -25,20 +24,48 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+const dbName = "portalDb";
+const uri = "mongodb+srv://brijsunil2:123p@cluster0.5wemlrc.mongodb.net/" + dbName + "?retryWrites=true&w=majority";
+mongoose.connect(uri)
+  .then(() => console.log("[Server]: Connected to mongo database."));
+
+const postSchema = {
+  username: String,
+  userID: Object,
+  message: String,
+  dateCreated: String
+};
+
+const forumSchema = {
+  title: String,
+  desc: String,
+  // creatorId: Object,
+  creator: String,
+  dateCreated: String,
+  posts: [postSchema]
+};
+
+const Post = mongoose.model("Post", postSchema);
+const Forum = mongoose.model("Forum", forumSchema);
+
 socketIO.on("connection", (socket) => {
   console.log(`[Server]: ${socket.id} just connected.`);
 
   socket.on("forumReply", (reply) => {
-    fakeDB.forums.find(forum => {
-      if (forum.id == reply.forumID) {
-        delete reply.forumID;
-        reply.postID = postIdCounter;
-        reply.dateCreated = getDate() + " " + getTime();
-        forum.posts.push(reply);
-        socketIO.emit("forumReplyUpdate/" + forum.id, reply);
-        postIdCounter++;
-      }
+    const message = new Post({
+      username: reply.username,
+      userID: reply.userID,
+      message: reply.message,
+      dateCreated: getDate() + " " + getTime()
     });
+
+    Forum.findOne({_id: reply.forumID})
+      .then(found => {
+        found.posts.push(message);
+        found.save();
+        socketIO.emit("forumReplyUpdate/" + found._id, message);
+      })
+      .catch(e => console.log("[Server: Error]: Unable to find user forum => " + e));
   });
 
   socket.on("disconnect", () => {
@@ -57,19 +84,27 @@ app.post("/users", (req, res) => {
 });
 
 app.get("/forums", (req, res) => {
-  res.json(fakeDB.forums);
+  Forum.find({})
+    .then(found => res.json(found))
+    .catch(e => console.log("[Server]: Unable to find any forums. " + e))
 });
 
 app.post("/forums", (req, res) => {
-  const dateTime = getDate() + " " + getTime();
-  const newForum = {...req.body, id: forumIdCounter, posts: [], dateCreated: dateTime};
-  fakeDB.forums.push(newForum);
-  forumIdCounter++;
-  res.json({forumID: newForum.id});
+  const newForum = new Forum({
+    ...req.body, 
+    dateCreated: getDate() + " " + getTime(),
+    posts: [], 
+  });
+  newForum.save()
+    .catch(e => console.log("[Server: Error]: Unable to save new forum => " + newForum));
+
+  res.json({forumID: newForum._id});
 });
 
 app.get("/forum/:id", (req, res) => {
-  res.json(fakeDB.forums.find(forum => req.params.id == forum.id));
+  Forum.findOne({_id: req.params.id})
+    .then(found => res.json(found))
+    .catch(e =>  res.json({error: "Forum not Found"}));
 });
 
 http.listen(PORT, () => console.log(`[Server]: Running on port ${PORT}`));

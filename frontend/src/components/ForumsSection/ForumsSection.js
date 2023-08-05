@@ -72,7 +72,7 @@ const ForumsSection = ({user}) => {
       </div>
       <div className='container forumslist-container'>
         {
-          forums.map(forum => <ForumsListItem key={forum.id} data={forum} />)
+          forums.map(forum => <ForumsListItem key={forum._id} data={forum} />)
         }
       </div>
 

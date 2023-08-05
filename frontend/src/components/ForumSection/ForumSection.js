@@ -1,6 +1,6 @@
 import "./ForumSection.css";
 import { useState, useRef, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ForumSectionHeader from "./ForumSectionHeader";
 import ForumSectionBody from "./ForumSectionBody";
 
@@ -17,14 +17,14 @@ import ForumSectionBody from "./ForumSectionBody";
 const ForumSection = ({ socket, user }) => {
   const { id } = useParams();
   const init = useRef(false);
-  const temp = useRef(false);
+  const navagate = useNavigate();
 
   const [forumData, setForumData] = useState({
     title: "",
     desc: "",
     userid: 0,
     creator: "",
-    id: 0,
+    _id: 0,
     posts: [],
     dateCreated: ""
   });
@@ -45,7 +45,13 @@ const ForumSection = ({ socket, user }) => {
       fetch("http://localhost:4000/forum/" + id, {
         method: "GET"
       }).then(res => res.json())
-        .then(data => setForumData(data));
+        .then(data => {
+          if (!data.error) {
+            setForumData(data);
+          } else {
+            navagate("http://localhost:3000/forums/");
+          }
+        });
     }
 
     socket.on("forumReplyUpdate/" + id, data => setData(data));

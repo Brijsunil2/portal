@@ -1,5 +1,4 @@
 const ForumListItem = ({ post }) => {
-
   return (
     <div className="forum-message-body py-2">
       <div className="row forumitem-header">

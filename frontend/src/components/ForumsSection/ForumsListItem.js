@@ -5,7 +5,7 @@ const ForumsListItem = ({data}) => {
   const navagate = useNavigate();
 
   const forumOnClick = () => {
-    navagate("/forum/" + data.id);
+    navagate("/forum/" + data._id);
   };
 
   return (

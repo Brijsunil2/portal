@@ -1,9 +1,6 @@
 import { useState } from "react";
-import googleIcon from "../../assets/google.svg";
 import "./AuthSection.css";
 import AuthBtn from "./AuthBtn";
-import AuthDiv from "./AuthDiv";
-import Button from "../Button/Button";
 
 const AuthSection = ({ setUser, socket }) => {
   const [username, setUsername] = useState("");
@@ -27,9 +24,6 @@ const AuthSection = ({ setUser, socket }) => {
 
   return (
     <div className="auth-container">
-      {/* <AuthBtn imgSrc={googleIcon} text={"Sign in with Google"} />
-      <AuthDiv text={"OR"} />
-      <AuthBtn imgSrc={googleIcon} text={"Sign up with Google"} /> */}
       <form className="px-4 d-flex flex-column" onSubmit={submitUser}>
         <input type="text" className="form-control" name="username" placeholder="Username" value={ username } onChange={usernameChange} />
         <AuthBtn text={"Submit"}/>

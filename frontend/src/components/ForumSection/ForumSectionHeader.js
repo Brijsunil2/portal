@@ -11,10 +11,11 @@ const ForumSectionHeader = ({ forumData, modalData, setModalData, socket, user }
     e.preventDefault();
 
     socket.emit('forumReply', {
-      ...user,
+      userID: user.id,
+      username: user.username,
       message: modalData,
       socketID: socket.id,
-      forumID: forumData.id
+      forumID: forumData._id
     });
     clearModal();
   };
