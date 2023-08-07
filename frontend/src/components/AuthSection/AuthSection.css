@@ -8,10 +8,15 @@
 
 .authbody-container {
   padding: 30px;
+  padding-top: 0;
 }
 
 .authlogin-container input {
   margin-bottom: 4px;
+}
+
+.authsignup-container input {
+  margin-bottom: 6px;
 }
 
 .auth-h2 {
@@ -20,4 +25,11 @@
   padding: 10px;
   margin: 10px;
   text-align: center;
+}
+
+.input-error-msg {
+  color: red;
+  font-size: 0.8rem;
+  text-align: center;
+  margin-bottom: 4px;
 }
