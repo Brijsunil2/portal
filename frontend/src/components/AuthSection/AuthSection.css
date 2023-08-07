@@ -1,31 +1,23 @@
-.auth-btn {
-  text-align: center;
-  background-color: #E2FDFF;
+.nav-btn {
+  padding: 6px 10px;
+}
+
+.auth-nav {
+  margin: 20px 0;
+}
+
+.authbody-container {
+  padding: 30px;
+}
+
+.authlogin-container input {
+  margin-bottom: 4px;
+}
+
+.auth-h2 {
+  color: black;
+  font-size: 1.5rem;
   padding: 10px;
-  margin: 6px 16px;
-  border: solid 1px #5465FF;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.auth-btn:hover {
-  background-color: #ececec;
-}
-
-.auth-btn img {
-  margin: 0px 16px;
-}
-
-.auth-btn span {
-  vertical-align: middle;
-}
-
-.auth-container {
-  margin: 16px 0px;
-  display: flex;
-  flex-direction: column;
-}
-
-form > button {
-  margin: 5px 0 !important; 
+  margin: 10px;
+  text-align: center;
 }

@@ -1,7 +1,5 @@
 import "./DropdownMenu.css";
 
-import Button from "../Button/Button";
-
 const DropdownMenu = ({ text, dropdownItems }) => {
   return (
     <div className="dropdown">

@@ -1,33 +1,55 @@
 import { useState } from "react";
 import "./AuthSection.css";
-import AuthBtn from "./AuthBtn";
+import AuthLogin from "./AuthLogin";
+import AuthSignup from "./AuthSignup";
 
 const AuthSection = ({ setUser, socket }) => {
-  const [username, setUsername] = useState("");
+  const [credentials, setCredentials] = useState();
+  const [isLogin, setIsLogin] = useState(true);
 
-  const usernameChange = (e) => {
-    setUsername(e.target.value);
-  }
+  // const submitUser = (e) => {
+  //   e.preventDefault();
+  //   fetch("http://localhost:4000/users", {
+  //     method: "POST",
+  //     body: JSON.stringify({username: username, socketID: socket.id}),
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     }
+  //   }).then((res) => res.json())
+  //     .then((userData) => setUser(userData));
+  // }
 
-  const submitUser = (e) => {
-    e.preventDefault();
-    fetch("http://localhost:4000/users", {
-      method: "POST",
-      body: JSON.stringify({username: username, socketID: socket.id}),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }).then((res) => res.json())
-      .then((userData) => setUser(userData));
-  }
+  const loginOnClick = () => {
+    setIsLogin(true);
+  };
+
+  const signupOnClick = () => {
+    setIsLogin(false);
+  };
 
   return (
     <div className="auth-container">
-      <form className="px-4 d-flex flex-column" onSubmit={submitUser}>
-        <input type="text" className="form-control" name="username" placeholder="Username" value={ username } onChange={usernameChange} />
-        <AuthBtn text={"Submit"}/>
-      </form>
+      <ul className="auth-nav nav nav-pills col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li className="nav-item">
+          <button 
+            className={"nav-link nav-btn " + (isLogin &&"active")}
+            onClick={loginOnClick} >
+              Login
+          </button>
+        </li>
+        <li className="nav-item">
+          <button 
+            className={"nav-link nav-btn " + (!isLogin &&"active")}
+            onClick={signupOnClick} >
+              Sign-up
+          </button>
+        </li> 
+      </ul>
+
+      <div className="authbody-container">
+        { isLogin ? <AuthLogin /> : <AuthSignup /> }
+      </div>
     </div>
   )
 };

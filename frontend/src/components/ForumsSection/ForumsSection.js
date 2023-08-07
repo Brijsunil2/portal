@@ -2,7 +2,6 @@ import "./ForumsSection.css";
 import { useState, useEffect, useRef } from "react";
 import ForumsListItem from "./ForumsListItem";
 import Searchbar from "../Searchbar/Searchbar";
-import Button from "../Button/Button";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import { useNavigate } from "react-router-dom";
 

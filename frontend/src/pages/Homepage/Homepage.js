@@ -29,12 +29,6 @@ const Homepage = ({ user, setUser, socket }) => {
             sectionName={"apps-container"} 
             content={<AuthSection setUser={setUser} socket={socket} />}
             backgroundColor={"white"}
-            header={
-              <SectionHeader 
-                headerName={ "Sign in | Sign up" } 
-                headerColor={"#788BFF"} 
-              />
-            }
           />
         )
       }
