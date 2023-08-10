@@ -14,12 +14,6 @@ const socketIO = require("socket.io")(http, {
   }
 });
 
-var userIdCounter = 1;
-const fakeDB = {
-  users: [],
-  forums: []
-}
-
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -28,6 +22,13 @@ const dbName = "portalDb";
 const uri = "mongodb+srv://brijsunil2:123p@cluster0.5wemlrc.mongodb.net/" + dbName + "?retryWrites=true&w=majority";
 mongoose.connect(uri)
   .then(() => console.log("[Server]: Connected to mongo database."));
+
+const userSchema = {
+  firstname: String,
+  lastname: String,
+  email: String,
+  password: String
+};
 
 const postSchema = {
   username: String,
@@ -45,6 +46,7 @@ const forumSchema = {
   posts: [postSchema]
 };
 
+const User = mongoose.model("User", userSchema);
 const Post = mongoose.model("Post", postSchema);
 const Forum = mongoose.model("Forum", forumSchema);
 
@@ -73,14 +75,51 @@ socketIO.on("connection", (socket) => {
   });
 });
 
-app.post("/users", (req, res) => {
-  const newUser = {
-    id: userIdCounter,
-    username: req.body.username
-  };
-  fakeDB.users.push(newUser);
-  res.json(newUser);
-  userIdCounter++;
+app.post("/signup", (req, res) => {
+  User.findOne({email: req.body.email})
+    .then((found) => {
+      if (found) {
+        res.json({error: "Email already exists"});
+      } else {
+        const newUser = new User({...req.body, isAuth: true});
+        newUser.save();
+        res.json({id: newUser._id, email: req.body.email, isAuth: true});
+      }
+    })
+    .catch(e => {
+      console.log("[Server]: Error when searching for user email. "+ e);
+      res.json({error: "Server side error has occured. Please try again later."});
+    });
+});
+
+app.post("/login1", (req, res) => {
+  User.findOne({email: req.body.email})
+  .then((found) => {
+    if (found) {
+      res.json({success: "Email exists"});
+    } else {
+      res.json({error: "Email does not exist"});
+    }
+  })
+  .catch(e => {
+    console.log("[Server]: Error when searching for user email. "+ e);
+    res.json({error: "Server side error has occured. Please try again later."});
+  });
+});
+
+app.post("/login2", (req, res) => {
+  User.findOne({email: req.body.email, password: req.body.password})
+  .then((found) => {
+    if (found) {
+      res.json({id: found._id, email: found.email, isAuth: true});
+    } else {
+      res.json({error: "The password entered was incorrect"});
+    }
+  })
+  .catch(e => {
+    console.log("[Server]: Error when searching for user email. "+ e);
+    res.json({error: "Server side error has occured. Please try again later."});
+  });
 });
 
 app.get("/forums", (req, res) => {

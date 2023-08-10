@@ -1,5 +1,5 @@
 import { useState } from "react";
-const AuthSignup = () => {
+const AuthSignup = ({ setUser }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const userCredentials = {
     firstname: "",
@@ -31,9 +31,21 @@ const AuthSignup = () => {
     if (e.target.signupRePassInput.value !== userCredentials.password) {
       setErrorMessage("Passwords do not match");
     } else {
-      
+      postUserInfoToServer(userCredentials);
     }
   };
+
+  const postUserInfoToServer = async (userCredentials) => {
+    await fetch("http://localhost:4000/signup", {
+      method: "POST",
+      body: JSON.stringify(userCredentials),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then((res) => res.json())
+      .then((userData) => userData.error ? setErrorMessage(userData.error) : setUser(userData));
+  }
 
   return (
     <div className="authsignup-container">

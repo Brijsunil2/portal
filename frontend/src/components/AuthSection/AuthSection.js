@@ -4,21 +4,7 @@ import AuthLogin from "./AuthLogin";
 import AuthSignup from "./AuthSignup";
 
 const AuthSection = ({ setUser, socket }) => {
-  const [credentials, setCredentials] = useState();
   const [isLogin, setIsLogin] = useState(true);
-
-  // const submitUser = (e) => {
-  //   e.preventDefault();
-  //   fetch("http://localhost:4000/users", {
-  //     method: "POST",
-  //     body: JSON.stringify({username: username, socketID: socket.id}),
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json'
-  //     }
-  //   }).then((res) => res.json())
-  //     .then((userData) => setUser(userData));
-  // }
 
   const loginOnClick = () => {
     setIsLogin(true);
@@ -48,7 +34,7 @@ const AuthSection = ({ setUser, socket }) => {
       </ul>
 
       <div className="authbody-container">
-        { isLogin ? <AuthLogin /> : <AuthSignup /> }
+        { isLogin ? <AuthLogin setUser={setUser} /> : <AuthSignup setUser={setUser} /> }
       </div>
     </div>
   )

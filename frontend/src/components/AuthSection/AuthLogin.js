@@ -1,9 +1,35 @@
 import { useState } from "react";
+import { useLocalStorage } from "../../utilities/localStoargeUtil";
 
-const AuthLogin = () => {
+const AuthLogin = ({ setUser }) => {
   const [isEmailInput, setIsEmailInput] = useState(true);
+  const [email, setEmail] = useLocalStorage("email", null);
   const userCredentials = {email: "", password: ""};
   const [errorMessage, setErrorMessage] = useState("");
+
+  const postEmailToServer = async (email) => {
+    await fetch("http://localhost:4000/login1", {
+      method: "POST",
+      body: JSON.stringify({email: email}),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then((res) => res.json())
+      .then((msg) => msg.error ? setErrorMessage(msg.error) : setIsEmailInput(false));
+  }
+
+  const postCredentialsToServer = async (userCredentials) => {
+    await fetch("http://localhost:4000/login2", {
+      method: "POST",
+      body: JSON.stringify(userCredentials),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then((res) => res.json())
+      .then((userData) => userData.error ? setErrorMessage(userData.error) : setUser(userData));
+  }
 
   const showPasswordOnClick = () => {
     const passwordInput = document.getElementById("loginPassInput");
@@ -19,14 +45,19 @@ const AuthLogin = () => {
     setErrorMessage("");
     if (isEmailInput) {
       userCredentials.email = e.target.loginEmailInput.value;
-      setIsEmailInput(false);
+      setEmail(e.target.loginEmailInput.value);
+      postEmailToServer(userCredentials.email);
     } else {
+      userCredentials.email = email;
       userCredentials.password = e.target.loginPassInput.value;
+      console.log(userCredentials)
+      postCredentialsToServer(userCredentials);
     }
   };
 
   const backBtnOnClick = () => {
     setIsEmailInput(true);
+    setErrorMessage("");
     userCredentials.email = "";
     userCredentials.password = "";
   };
