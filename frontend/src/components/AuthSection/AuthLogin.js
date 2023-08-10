@@ -16,7 +16,14 @@ const AuthLogin = ({ setUser }) => {
         'Content-Type': 'application/json'
       }
     }).then((res) => res.json())
-      .then((msg) => msg.error ? setErrorMessage(msg.error) : setIsEmailInput(false));
+      .then((msg) => {
+        if (msg.error) {
+          setErrorMessage(msg.error);
+          window.localStorage.setItem("email", null);
+        } else {
+          setIsEmailInput(false);
+        }
+      });
   }
 
   const postCredentialsToServer = async (userCredentials) => {
@@ -52,7 +59,7 @@ const AuthLogin = ({ setUser }) => {
       userCredentials.password = e.target.loginPassInput.value;
       console.log(userCredentials)
       postCredentialsToServer(userCredentials);
-      window.localStorage.removeItem("email");
+      window.localStorage.setItem("email", null);
     }
   };
 

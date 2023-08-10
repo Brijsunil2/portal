@@ -1,9 +1,9 @@
-const IconDropdownItem = ({ dropdownItem }) => {
+const IconDropdownItem = ({ title, onClickFunc }) => {
   return (
-    <li>
+    <li onClick={onClickFunc}>
       {
-        dropdownItem !== "divider" ?
-        <a className="dropdown-item" href="./">{dropdownItem}</a> :
+        title !== "divider" ?
+        <a className="dropdown-item" href="./">{title}</a> :
         <hr className="dropdown-divider" />
       }
     </li>

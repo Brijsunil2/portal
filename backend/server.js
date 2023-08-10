@@ -41,7 +41,7 @@ const postSchema = {
 const forumSchema = {
   title: String,
   desc: String,
-  // creatorId: Object,
+  userID: Object,
   creator: String,
   dateCreated: String,
   posts: [postSchema]

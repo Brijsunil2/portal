@@ -32,6 +32,7 @@ const App = () => {
       <Header 
         appTitle={appTitle}
         paths={paths}
+        isAuth={isAuth}
       />
       <Routes>
         <Route index path={paths.Name} element={
