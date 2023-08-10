@@ -26,6 +26,7 @@ mongoose.connect(uri)
 const userSchema = {
   firstname: String,
   lastname: String,
+  username: String,
   email: String,
   password: String
 };
@@ -81,9 +82,18 @@ app.post("/signup", (req, res) => {
       if (found) {
         res.json({error: "Email already exists"});
       } else {
-        const newUser = new User({...req.body, isAuth: true});
+        const newUser = new User({
+          ...req.body, 
+          username: req.body.firstname + " " + req.body.lastname,
+          isAuth: true
+        });
         newUser.save();
-        res.json({id: newUser._id, email: req.body.email, isAuth: true});
+        res.json({
+          id: newUser._id, 
+          email: req.body.email, 
+          username: req.body.firstname + " " + req.body.lastname,
+          isAuth: true
+        });
       }
     })
     .catch(e => {
@@ -111,7 +121,7 @@ app.post("/login2", (req, res) => {
   User.findOne({email: req.body.email, password: req.body.password})
   .then((found) => {
     if (found) {
-      res.json({id: found._id, email: found.email, isAuth: true});
+      res.json({id: found._id, email: found.email, username: found.username, isAuth: true});
     } else {
       res.json({error: "The password entered was incorrect"});
     }

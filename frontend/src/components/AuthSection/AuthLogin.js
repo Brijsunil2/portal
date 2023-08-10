@@ -52,6 +52,7 @@ const AuthLogin = ({ setUser }) => {
       userCredentials.password = e.target.loginPassInput.value;
       console.log(userCredentials)
       postCredentialsToServer(userCredentials);
+      window.localStorage.removeItem("email");
     }
   };
 

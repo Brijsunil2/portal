@@ -4,16 +4,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import ForumSectionHeader from "./ForumSectionHeader";
 import ForumSectionBody from "./ForumSectionBody";
 
-// {
-//   title: 'dsadsa',
-//   desc: 'dsaddasdad',
-//   userid: 1,
-//   creator: 'joe',
-//   id: 1,
-//   posts: [],
-//   dateCreated: 'Saturday, July 29, 2023 1:20 PM'
-// }
-
 const ForumSection = ({ socket, user }) => {
   const { id } = useParams();
   const init = useRef(false);
@@ -46,10 +36,10 @@ const ForumSection = ({ socket, user }) => {
         method: "GET"
       }).then(res => res.json())
         .then(data => {
-          if (!data.error) {
-            setForumData(data);
-          } else {
+          if (data.error) {
             navagate("http://localhost:3000/forums/");
+          } else {
+            setForumData(data);
           }
         });
     }
