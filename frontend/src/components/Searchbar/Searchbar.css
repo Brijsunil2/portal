@@ -1,4 +1,5 @@
 .searchbar {
+  display: block;
   border: solid 1px;
   border-radius: 5px;
   height: 35px;
@@ -19,7 +20,7 @@
 }
 
 .searchbar > input {
-  /* height: 100%; */
+  padding: 0 20px;
   width: 100%;
   border: none;
   border-radius: 5px;
@@ -27,4 +28,28 @@
 
 .searchbar > input:focus {
   outline: none;
+}
+
+.searchbar > button {
+  background-color: #E2FDFF;
+  border-radius: 0 5px 5px 0;
+  border-width: 0;
+  border-left: solid 1px black;
+  height: 100%;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.searchbar > button:hover {
+  font-size: 16px;
+}
+
+.clear-x {
+  margin: auto 10px;
+  width: 14px;
+  height: 14px;
+}
+
+.clear-x:hover {
+  color: red;
 }

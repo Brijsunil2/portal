@@ -56,12 +56,16 @@ const ForumsSection = ({user}) => {
       .catch((e) => console.log("Error creating a forum " + e));
   };
 
+  const searchBarSubmit = (value) => {
+    console.log(value);
+  };
+
   return (
     <>
       <div className="container">
         <div className="forum-interact-bar row">
           <div className="col-md">
-            <Searchbar />
+            <Searchbar submitFunc={searchBarSubmit} />
           </div>
           <div className="col-md d-flex justify-content-end">
             <button type="button" className="btn custom-btn" data-bs-toggle="modal" data-bs-target="#createForumModal">Create Forum</button>

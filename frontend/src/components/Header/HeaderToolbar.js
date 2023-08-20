@@ -5,17 +5,11 @@ const HeaderToolbar = ({ paths }) => {
 
   return (
     <ul className="nav nav-underline col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-      {
-        keys.map((key, i) => 
-          <HeaderToolbarLink 
-            key={i}
-            title={key}
-            path={paths[key]}
-          />
-        )
-      }
+      {keys.map((key, i) => (
+        <HeaderToolbarLink key={i} title={key} path={paths[key]} />
+      ))}
     </ul>
-  )
-}
+  );
+};
 
-export default HeaderToolbar
+export default HeaderToolbar;
