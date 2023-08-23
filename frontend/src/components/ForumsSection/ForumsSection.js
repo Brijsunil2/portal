@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import ForumsListItem from "./ForumsListItem";
 import Searchbar from "../Searchbar/Searchbar";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 
 const ForumsSection = ({user}) => {
   const navagate = useNavigate();
@@ -57,7 +57,18 @@ const ForumsSection = ({user}) => {
   };
 
   const searchBarSubmit = (value) => {
-    console.log(value);
+    if (value) {
+      fetch("http://localhost:4000/forumsearch/" + value, {
+        method: "GET"
+      }).then(res => res.json())
+        .then(data => setForums(data));
+
+    } else {
+      fetch("http://localhost:4000/forums", {
+        method: "GET"
+      }).then(res => res.json())
+        .then(data => setForums(data));
+    }
   };
 
   return (

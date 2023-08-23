@@ -150,6 +150,13 @@ app.post("/forums", (req, res) => {
   res.json({forumID: newForum._id});
 });
 
+app.get("/forumsearch/:value", (req, res) => {
+  const regex = new RegExp(req.params.value, 'i')
+  Forum.find({title: {$regex: regex}})
+  .then(found => res.json(found))
+  .catch(e => console.log("[Server]: Unable to find any forums. " + e))
+});
+
 app.get("/forum/:id", (req, res) => {
   Forum.findOne({_id: req.params.id})
     .then(found => res.json(found))
