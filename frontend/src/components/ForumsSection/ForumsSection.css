@@ -1,23 +1,20 @@
 .forumslistitem-container {
   margin: 16px;
   padding: 20px;
-  border: solid 1px #dadada;
-  border-radius: 5px;
+  border: dotted 1px #dadada;
 }
 
 .forumslistitem-container:hover {
   cursor: pointer;
-  border: none;
-  box-shadow: #5465FF 0px 0px 5px;
 }
 
 .forumitem-header {
-  background-color: aliceblue;
   padding: 5px;
 }
 
 .forumslistitem-container p {
   margin: 0;
+  padding: 0 15px;
   font-size: 14px;
 }
 
@@ -37,4 +34,24 @@
 
 .forum-interact-bar {
   margin-top: 10px;
+}
+
+.custom-btn {
+  background-color: #E2FDFF;
+  border: solid 1px;
+  border-radius: 5px;
+  height: 35px;
+  margin: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.custom-btn:hover {
+  background-color: #E2FDFF;
+  border: solid 1px;
+  box-shadow: #5465FF 0px 0px 15px;
+}
+
+.dropdown-item:hover {
+  cursor: pointer;
 }

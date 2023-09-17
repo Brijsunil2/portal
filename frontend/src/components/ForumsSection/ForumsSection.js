@@ -2,13 +2,12 @@ import "./ForumsSection.css";
 import { useState, useEffect, useRef } from "react";
 import ForumsListItem from "./ForumsListItem";
 import Searchbar from "../Searchbar/Searchbar";
-import DropdownMenu from "../DropdownMenu/DropdownMenu";
-import { json, useNavigate } from "react-router-dom";
+import ForumsDropdown from "./ForumsDropdown";
+import { useNavigate } from "react-router-dom";
 
 const ForumsSection = ({user}) => {
   const navagate = useNavigate();
   const init = useRef(false);
-  const dropdownItems = ["Latest", "Oldest" , "Name"];
   const [forums, setForums] = useState([]);
   const [modalData, setModalData] = useState({ title: "", desc: "" });
 
@@ -80,7 +79,7 @@ const ForumsSection = ({user}) => {
           </div>
           <div className="col-md d-flex justify-content-end">
             <button type="button" className="btn custom-btn" data-bs-toggle="modal" data-bs-target="#createForumModal">Create Forum</button>
-            <DropdownMenu text="Filter By" dropdownItems={dropdownItems}/>
+            <ForumsDropdown list={forums} setList={setForums} />
           </div>
         </div>
       </div>

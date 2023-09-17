@@ -7,13 +7,15 @@
 
 .forumsectionheader-container p {
   margin: 0;
+  padding: 0 15px;
   font-size: 14px;
 }
 
 .forum-title {
   font-family: 'Roboto Flex', sans-serif;
-  color: #000;
+  color: #282cff;
   font-size: 32px;
+  text-decoration: underline;
 }
 
 .forum-light-text {
@@ -21,15 +23,19 @@
 }
 
 .forumitem-header {
-  background-color: aliceblue;
   padding: 5px;
 }
 
 .forum-message-body {
-  margin: 0 25px;
+  margin: 5px 15px;
+  background-color: #f8f8f8;
 }
 
 .forum-message-body p {
-  margin: 0;
+  margin: 0 10px;
   font-size: 14px;
+}
+
+.forum-message-body h3 {
+  font-weight: bold;
 }
