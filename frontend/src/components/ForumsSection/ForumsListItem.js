@@ -1,5 +1,5 @@
-// import { BiSolidUpArrowAlt, BiSolidDownArrowAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import { BsFillChatDotsFill } from "react-icons/bs";
 
 const ForumsListItem = ({data}) => {
   const navagate = useNavigate();
@@ -10,36 +10,18 @@ const ForumsListItem = ({data}) => {
 
   return (
     <div className="d-flex flex-column forumslistitem-container" onClick={forumOnClick}>
-      <div className="row forumitem-header">
-        <div className="col-sm">
-          <h2 className="forum-title">{ data.title }</h2>
+      <div className="row">
+        <div className="col-3 col-sm-2 col-lg-1 text-center">
+          <BsFillChatDotsFill />
+          <p className="forum-light-text">{ data.creator }</p>
         </div>
-        <div className="col-sm">
+        <div className="col">
           <div className="row">
-            <p className="forum-light-text text-end">{ data.dateCreated }</p>
-          </div>
-          <div className="row">
-            <p className="forum-light-text text-end">{ "Creator: " + data.creator }</p>
+            <h2 className="forum-title">{ data.title }</h2>
+            <p className="forum-summary">{ data.desc.slice(0, 200) + " ..." }</p>
           </div>
         </div>
       </div>
-      <div className="row flex-fill py-4">
-        <div className="col-sm">
-          <p className="forum-summary">{ data.desc.slice(0, 300) + " ..." }</p>
-        </div>
-      </div>
-      {/* <div className="row text-end">
-        <div className="col-sm">
-          <div className="container upvotes-container d-inline">
-            <BiSolidUpArrowAlt style={{ color: "#2D841F" }} /> 
-            <p className="d-inline forum-light-text">{ data.upvotes }</p>
-          </div>
-          <div className="container downvotes-container d-inline">
-            <BiSolidDownArrowAlt style={{ color: "#DE2D2D" }}/>
-            <p className="d-inline forum-light-text">{ data.downvotes }</p>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };

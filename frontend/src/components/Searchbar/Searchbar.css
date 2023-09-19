@@ -40,10 +40,6 @@
   font-weight: bold;
 }
 
-.searchbar > button:hover {
-  font-size: 16px;
-}
-
 .clear-x {
   margin: auto 10px;
   width: 14px;

@@ -8,32 +8,23 @@
   cursor: pointer;
 }
 
-.forumitem-header {
-  padding: 5px;
-}
-
-.forumslistitem-container p {
-  margin: 0;
-  padding: 0 15px;
-  font-size: 14px;
-}
-
-.upvotes-container:hover, .downvotes-container:hover {
-  font-weight: bold;
-}
-
 .forum-title {
   font-family: 'Roboto Flex', sans-serif;
   color: #000;
   font-size: 32px;
 }
 
-.forum-light-text {
-  color: #595959;
+.forumslistitem-container p {
+  margin: 0;
+  font-size: 14px;
 }
 
 .forum-interact-bar {
   margin-top: 10px;
+}
+
+.forum-light-text {
+  color: #b3b3b3;
 }
 
 .custom-btn {
