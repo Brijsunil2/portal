@@ -4,7 +4,7 @@ const ForumListItem = ({ post }) => {
   return (
     <div className="forum-message-body py-2">
       <div className="row forumitem-header">
-        <div className="col-3 col-sm-2 col-lg-1 d-flex align-items-center justify-content-center">
+        <div className="col-3 col-sm-2 col-lg-1 d-flex justify-content-center">
           <div className="text-center userinfo-container">
             <BsFillChatDotsFill />
             <p className="forum-light-text">{post.username}</p>
@@ -24,7 +24,3 @@ const ForumListItem = ({ post }) => {
 };
 
 export default ForumListItem;
-{
-  /* 
-<p className="forum-summary p-2">{ post.message }</p> */
-}
