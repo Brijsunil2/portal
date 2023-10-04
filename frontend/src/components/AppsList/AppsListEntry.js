@@ -1,13 +1,22 @@
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
-const AppsListEntry = ({ appName }) => {
-  const navigate = useNavigate(); 
-  const routeChange = () =>{ 
+const AppsListEntry = ({ appName, appIcon }) => {
+  const navigate = useNavigate();
+  const routeChange = () => {
     navigate("/" + appName.toLowerCase());
   };
 
   return (
-    <div className="applistentry" onClick={routeChange}>{ appName }</div>
+    <motion.div
+      className="applistentry"
+      onClick={routeChange}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+    >
+      {appIcon}
+      <h3>{appName}</h3>
+    </motion.div>
   );
 };
 

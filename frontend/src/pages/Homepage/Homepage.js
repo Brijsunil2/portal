@@ -6,8 +6,7 @@ import DateTimeSection from "../../components/DateTimeSection/DateTimeSection";
 import WeatherView from "../../components/WeatherView/WeatherView";
 import AuthSection from "../../components/AuthSection/AuthSection";
 
-const Homepage = ({ user, setUser, isAuth, socket }) => {  
-  const appNames = ["Forums", "Calendar"];
+const Homepage = ({ setUser, isAuth, socket }) => {  
 
   return (
     <div className="container homepage-container body-container">
@@ -15,12 +14,11 @@ const Homepage = ({ user, setUser, isAuth, socket }) => {
         isAuth ? (
           <Section 
             sectionName={"apps-container"} 
-            content={<AppsList appNames={appNames} />}
+            content={<AppsList />}
             backgroundColor={"white"}
             header={
               <SectionHeader 
                 headerName={ "Apps" } 
-                headerColor={"#788BFF"} 
               />
             }
           />

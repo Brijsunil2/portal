@@ -1,16 +1,13 @@
 .background-container {
   width: 100%;
   height: 100%;
-  border-radius: 10px;
   border: #dadada solid 1px;
 }
 
 .section-header {
   text-align: center;
   padding: 6px;
-  border-radius: 5px 5px 0px 0px;
-  border: solid 1px #dadada;
-  background-color: aliceblue;
+  border-bottom: solid 1px #dadada;
 }
 
 .section-header h2 {
