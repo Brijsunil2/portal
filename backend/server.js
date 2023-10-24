@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { getDate, getTime } = require("./utilities/date.js");
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -18,8 +19,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-const dbName = "portalDb";
-const uri = "mongodb+srv://brijsunil2:123p@cluster0.5wemlrc.mongodb.net/" + dbName + "?retryWrites=true&w=majority";
+const uri = process.env.DB_NAME_URI;
 mongoose.connect(uri)
   .then(() => console.log("[Server]: Connected to mongo database."));
 

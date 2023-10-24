@@ -47,7 +47,7 @@ const ForumSection = ({ socket, user }) => {
     socket.on("forumReplyUpdate/" + id, data => setData(data));
 
     return () => socket.off("forumReplyUpdate/" + id);
-  }, [setData, forumData]);
+  }, [setData, forumData, id, socket, navagate]);
 
 
   return (
