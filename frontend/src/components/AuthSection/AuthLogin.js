@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "../../public_variables";
 import { useState } from "react";
 import { useLocalStorage } from "../../utilities/localStoargeUtil";
 
@@ -8,7 +9,7 @@ const AuthLogin = ({ setUser }) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const postEmailToServer = async (email) => {
-    await fetch("http://localhost:4000/login1", {
+    await fetch(BACKEND_URL + "/login1", {
       method: "POST",
       body: JSON.stringify({email: email}),
       headers: {
@@ -27,7 +28,7 @@ const AuthLogin = ({ setUser }) => {
   }
 
   const postCredentialsToServer = async (userCredentials) => {
-    await fetch("http://localhost:4000/login2", {
+    await fetch(BACKEND_URL +"/login2", {
       method: "POST",
       body: JSON.stringify(userCredentials),
       headers: {

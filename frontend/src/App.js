@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "./public_variables";
 import { useLocalStorage } from "./utilities/localStoargeUtil";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -9,7 +10,7 @@ import Calendarpage from "./pages/Calandarpage/Calendarpage";
 import Forumpage from "./pages/Forumpage/Forumpage";
 
 import socketIO from "socket.io-client";
-const socket = socketIO.connect("http://localhost:4000");
+const socket = socketIO.connect(BACKEND_URL);
 
 const App = () => {
   const [user, setUser] = useLocalStorage("user", null);

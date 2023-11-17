@@ -3,7 +3,7 @@ import "./AuthSection.css";
 import AuthLogin from "./AuthLogin";
 import AuthSignup from "./AuthSignup";
 
-const AuthSection = ({ setUser, socket }) => {
+const AuthSection = ({ setUser }) => {
   const [isLogin, setIsLogin] = useState(true);
 
   const loginOnClick = () => {

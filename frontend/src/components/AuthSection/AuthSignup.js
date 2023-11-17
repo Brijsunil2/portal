@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "../../public_variables";
 import { useState } from "react";
 const AuthSignup = ({ setUser }) => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -36,7 +37,7 @@ const AuthSignup = ({ setUser }) => {
   };
 
   const postUserInfoToServer = async (userCredentials) => {
-    await fetch("http://localhost:4000/signup", {
+    await fetch(BACKEND_URL +"/signup", {
       method: "POST",
       body: JSON.stringify(userCredentials),
       headers: {

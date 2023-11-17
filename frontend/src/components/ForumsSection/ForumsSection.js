@@ -1,4 +1,5 @@
 import "./ForumsSection.css";
+import { BACKEND_URL } from "../../public_variables";
 import { useState, useEffect, useRef } from "react";
 import ForumsListItem from "./ForumsListItem";
 import Searchbar from "../Searchbar/Searchbar";
@@ -13,7 +14,7 @@ const ForumsSection = ({user}) => {
 
   useEffect(() => {
     if (!init.current) {
-      fetch("http://localhost:4000/forums", {
+      fetch(`${BACKEND_URL}/forums`, {
         method: "GET"
       }).then(res => res.json())
         .then(data => setForums(data));
@@ -35,7 +36,7 @@ const ForumsSection = ({user}) => {
   };
 
   const modalSubmit = () => {
-    fetch("http://localhost:4000/forums", {
+    fetch(`${BACKEND_URL}/forums`, {
       method: "POST",
       body: JSON.stringify({
         title: modalData.title,
@@ -57,13 +58,13 @@ const ForumsSection = ({user}) => {
 
   const searchBarSubmit = (value) => {
     if (value) {
-      fetch("http://localhost:4000/forumsearch/" + value, {
+      fetch(`${BACKEND_URL}/forumsearch/${value}`, {
         method: "GET"
       }).then(res => res.json())
         .then(data => setForums(data));
 
     } else {
-      fetch("http://localhost:4000/forums", {
+      fetch(`${BACKEND_URL}/forums`, {
         method: "GET"
       }).then(res => res.json())
         .then(data => setForums(data));

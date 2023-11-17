@@ -1,4 +1,5 @@
 import "./ForumSection.css";
+import { BACKEND_URL, FRONTEND_URL } from "../../public_variables"
 import { useState, useRef, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ForumSectionHeader from "./ForumSectionHeader";
@@ -32,12 +33,12 @@ const ForumSection = ({ socket, user }) => {
   useEffect(() => {
     if (!init.current) {
       init.current = true;
-      fetch("http://localhost:4000/forum/" + id, {
+      fetch(`${BACKEND_URL}/forum/${id}`, {
         method: "GET"
       }).then(res => res.json())
         .then(data => {
           if (data.error) {
-            navagate("http://localhost:3000/forums/");
+            navagate(`${FRONTEND_URL}/forums/`);
           } else {
             setForumData(data);
           }
